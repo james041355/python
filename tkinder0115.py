@@ -175,7 +175,7 @@ def show_allform_window():#日期,序號,廠商名,資料
             else:
                 test_show_1("execl檔案未關閉 無法更新資料")
 
-            left_show_a(0,"主畫面",tops)# 999
+            left_show_a(0,"主畫面",tops)# 
         
         
         if flag==16: #037e
@@ -1189,8 +1189,22 @@ def show_allform_window():#日期,序號,廠商名,資料
                 
                     test_show_1(var.get())
                     
-                    right_clean()
+                    right_clean()#039
+                    dict_business_all={}
+                    for i in range(1001,int(factory_f)+1):
+                        temp=(json.loads(date_temp.get(str(i))))
+                        #print(i-1000,"編號:",temp[0],"名稱:",temp[1],"TEL :",temp[2])
+                        keep=i-1000
+                        dict_business_all[keep]=temp
+                #print(keep)
+                    for i in range(1101,int(business_b)+1):
+                        temp=(json.loads(date_temp.get(str(i))))
+                        #print(i-1101+keep+1,"編號:",temp[0],"名稱:",temp[1],"TEL :",temp[2])
+                        dict_business_all[i-1101+keep+1]=temp
                     
+                    #print(dict_business_all)
+                    middle_show_b(1,"廠商 客戶 名稱",dict_business_all,17) #039
+
                     
                     
                 elif var.get()==2:
@@ -1636,6 +1650,10 @@ def show_allform_window():#日期,序號,廠商名,資料
                     if flag==13:
                         #03-04-05
                         right_show(head_temp[0],head_temp[1],head_temp[2],total_form,13)
+                if flag==17:
+                    number=(temp.get(var.get()))
+                    test_show_1(number)#999
+                    
             var = tk.IntVar()#設置 var 內容
             var.set(0)
 

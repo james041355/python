@@ -370,7 +370,7 @@ def show_allform_window():#日期,序號,廠商名,資料
             #print(list_inquire[0],flag) #
             keyin_entry_form_fix(3,"輸入數量(修改)",11,list_inquire[0]) 
         #left_calean()
-     #0016  
+    #0016  
     def find_goods_lableonly_b(keyin):#編號 找到 產品標籤
         
         #list_inquire=[] #收集找到的值
@@ -750,15 +750,6 @@ def show_allform_window():#日期,序號,廠商名,資料
             #left_calean()
             print("enf")
 
-    
-    
-
-    
-    
-    
-    
-    
-    
     ####0001a
     def left_show_a(mode,title,temp):#模式 0 不顯 1 顯示,表頭,資料
         #print("left show=",date_temp.get("a"))

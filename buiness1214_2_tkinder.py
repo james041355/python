@@ -1492,6 +1492,7 @@ while choose != 88:
                     s1.cell(y,3).value =goods_last_temp[i][2]
                     y=y+1
                 wb.save('goods_use.xlsx')
+            
             if choose_a==2:
                 
                 goods_a= int(date_temp.get('a'))#產品數量
