@@ -1689,7 +1689,7 @@ while choose != 88:
                 print(" 1 :確定增加廠商資料\n","2 :不用增加廠商資料\n")
                 choose_b=(input())
                 while choose_b.isdigit()!=True :
-                            print(" 1 :確定刪除廠商資料\n","2 :不用刪除廠商資料\n",end='')
+                            print(" 1 :確定增加廠商資料\n","2 :不用增加廠商資料\n",end='')
                             choose_b=(input())
                 choose_b=int(choose_b)
                 if choose_b == 1:
