@@ -51,7 +51,7 @@ def show_allform_window():#日期,序號,廠商名,資料
                 break
         return flag
 
-    def left_calean():#清除左邊顯示
+    def left_clean():#清除左邊顯示
         Canvas=tk.Canvas
         cv = Canvas(window,width=250, height=250)#,bg = 'white'
             #           创建一个矩形，坐标为(10,10,110,110)
@@ -128,7 +128,7 @@ def show_allform_window():#日期,序號,廠商名,資料
             #test_show_1("flag")
             middle_show_b(2,"修改產品資料",list_inquire[0],flag)
 
-        left_calean()
+        left_clean()
         
     #0013
     def find_goods_lableonly(keyin):#找到 產品標籤
@@ -156,7 +156,7 @@ def show_allform_window():#日期,序號,廠商名,資料
                     find_goods(entry1.get(),flag)
                     
 
-        left_calean()
+        left_clean()
         
 
         if mode==1:#只顯示不修改
@@ -169,7 +169,7 @@ def show_allform_window():#日期,序號,廠商名,資料
             button.place(x=60,y=310)
 
         else:
-            #left_calean()
+            #left_clean()
             print("enf")
 
     
@@ -194,7 +194,7 @@ def show_allform_window():#日期,序號,廠商名,資料
         title=title
         temp=temp
         #main_read()
-        #left_calean()
+        #left_clean()
         middle_clean()
         #date_temp=(readdate(path_goods))#產品與電線用
         if mode==1:
@@ -240,7 +240,7 @@ def show_allform_window():#日期,序號,廠商名,資料
                             else:
                                 #無  後續動作 
                                 keep_temp.pop()
-                                left_calean()
+                                left_clean()
                                 middle_clean()
                                 keyin_entry(1,"產品名稱",1)#01-00
                                 left_show(1,"產品查詢",A1)
@@ -449,7 +449,7 @@ def show_allform_window():#日期,序號,廠商名,資料
         
         def notsure():
             left_show(1,"主畫面",tops)
-            left_calean()
+            left_clean()
             middle_clean()
             
             test_show_1("not delete goods")#01-04-04
@@ -475,7 +475,7 @@ def show_allform_window():#日期,序號,廠商名,資料
 
         def keyin_entry1(title,choose,temp):# 模式   標頭名稱  
             #01-02-03
-            left_calean()
+            left_clean()
             def fix():
                 
                 #test_show_2(entry1.get())
@@ -486,7 +486,7 @@ def show_allform_window():#日期,序號,廠商名,資料
                     
                     middle_show(1,"修改畫面",temp,2)
                     #middle_show_b(1,"修改畫面",temp,2)
-                    left_calean()
+                    left_clean()
                     #print(temp)
             
             def save():
@@ -495,7 +495,7 @@ def show_allform_window():#日期,序號,廠商名,資料
                 data_save_or_delete(1,temp)
             
 
-            #left_calean()
+            #left_clean()
             title = tk.Label(window, text=title ,fg="#8B008B", bg="#7AFEC6", width=20,font = ('Arial', 16))
             title.place(x=0,y=250)
             entry1 = tk.Entry(window, width = 20, text='y',bd=5,font = ('Arial', 16))    # 輸入欄位所在視窗  # 輸入欄位的寬度                    
@@ -658,7 +658,7 @@ def show_allform_window():#日期,序號,廠商名,資料
                         temp[choose]=entry1.get()
                         middle_show_b(2,"修改畫面",temp,flag) #p008
                         #middle_show(1,"修改畫面",temp,2)
-                        left_calean()
+                        left_clean()
                         #print(temp)
                 else:
                     #test_show_1(choose)
@@ -679,7 +679,7 @@ def show_allform_window():#日期,序號,廠商名,資料
                         if entry1.get()!= "":
                             temp[choose]=entry1.get()
                             middle_show_b(3,"修改畫面",temp,flag)
-                    left_calean()
+                    left_clean()
                     #test_show_1(choose)
             def save():
                 if flag != 3:
@@ -687,7 +687,7 @@ def show_allform_window():#日期,序號,廠商名,資料
                 else:
                     data_save_or_delete(2,temp)#01-03 use #p012
 
-            #left_calean()
+            #left_clean()
             title = tk.Label(window, text=title ,fg="#8B008B", bg="#7AFEC6", width=20,font = ('Arial', 16))
             title.place(x=0,y=250)
             entry1 = tk.Entry(window, width = 20, text='y',bd=5,font = ('Arial', 16))    # 輸入欄位所在視窗  # 輸入欄位的寬度                    

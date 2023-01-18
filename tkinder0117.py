@@ -4,9 +4,7 @@ from firebase_admin import credentials
 
 #from firebase_admin import firestore
 from firebase_admin import db
-#import matplotlib.pyplot as plt
-#import pandas as pd
-#import numpy as np
+
 import json
 import datetime
 from datetime import date
@@ -22,11 +20,6 @@ cred = credentials.Certificate('/Users/home/Desktop/python/outdata-6457c-firebas
 # 初始化firebase，注意不能重複初始化
 firebase_admin.initialize_app(cred,{
 	'databaseURL':'https://outdata-6457c.firebaseio.com'})
-
-
-
-    
-
 
 
 #0019
@@ -93,7 +86,7 @@ def show_allform_window():#日期,序號,廠商名,資料
             for j in range(len(title)):
                 if(day_choose[i] in title[j]):
                     second_temp.append(title[j])#日期篩選
-        if flag==15: #038
+        if flag==15: #04-01-04
             def show_goods_form(one_list,flag,goods_temp):#計算進出貨
                 temp=[]
                 goods_temp=goods_temp
@@ -124,7 +117,7 @@ def show_allform_window():#日期,序號,廠商名,資料
                         break
                 
                 show_goods_form(one_list,correct,goods_temp)
-                #goods_temp=show_goods_form(one_list,correct,goods_temp)            
+                            
             goods_temp.sort(key=lambda goods_temp:goods_temp[0])#陣列排序
             
             goods_last_temp=[]
@@ -136,8 +129,7 @@ def show_allform_window():#日期,序號,廠商名,資料
                         
                     goods_last_temp.append(goods_temp[i])
                     head=goods_last_temp[0][0]#新陣列 第一品名
-                        
-                        #print("head" ,goods_last_temp,head)
+
                 else:
                     if head==goods_temp[i][0]:
                         goods_last_temp[index][1]=float(goods_last_temp[index][1])+float(goods_temp[i][1])
@@ -161,30 +153,28 @@ def show_allform_window():#日期,序號,廠商名,資料
                 
             y=2
             for i in range(len(goods_last_temp)):
-                    #print(goods_last_temp[i])
+                
                 s1.cell(y,1).value =goods_last_temp[i][0]
                 s1.cell(y,2).value =goods_last_temp[i][1]
                 s1.cell(y,3).value =goods_last_temp[i][2]
                 y=y+1
-            
-            
-            
+                
             if form_use('goods_use.xlsx')==True:
                 wb.save('goods_use.xlsx')
                 test_show_1("execl 已更新資料")
             else:
                 test_show_1("execl檔案未關閉 無法更新資料")
 
-            left_show_a(0,"主畫面",tops)# 999
+            left_show_a(0,"主畫面",tops)# 
         
         
-        if flag==16: #037e
+        if flag==16: #04-02-07
             def show_one_goods(one_list,name,goods_temp):#找單一產品在表單的數量####
                 
                 one3_list=one_list[2]
                 temp=[]
                 for i in range(len(one3_list)):
-                    #print(one3_list[i][0])
+                    
                     if name== one3_list[i][0] :
                         temp.append(one_list[0])
                         temp.append(one_list[1])
@@ -207,8 +197,7 @@ def show_allform_window():#日期,序號,廠商名,資料
             right_show_b(goods_temp,name,16)
         
         if flag==12 or flag==13:
-            #print(second_temp)#p034b p035b
-            #test_show_1("12")
+            
             if len(second_temp) < 21:
                 dict_form_list={}
                 for i in range(len(second_temp)):
@@ -251,7 +240,7 @@ def show_allform_window():#日期,序號,廠商名,資料
                     trans_temp.append(temp)
                     temp=[]
             
-            #print(last_toatl)   
+            
             temp=["","---------------------","-----","-----","-----","-----"]
             trans_temp.append(temp)
             temp=["","總計","","","",last_toatl]
@@ -342,8 +331,7 @@ def show_allform_window():#日期,序號,廠商名,資料
             s1.cell(i+2,2).value = int(int(wire[i][1])*para/100)    # 儲存格 B2 內容 ( row=2, column=2 ) 為 200
             s1.cell(i+2,3).value = int(int(wire[i][1])*(para+10)/100)     # 儲格 B3 內容 ( row=3, column=2 ) 為 300
         
-        #print("test")
-        #print(form_use("wire_use.xlsx"))
+        
         if form_use("wire_use.xlsx")==True:
             wb.save('wire_use.xlsx')
             test_show_1("execl 已更新資料")
@@ -353,9 +341,9 @@ def show_allform_window():#日期,序號,廠商名,資料
         if flag==8:#p022 #02-03-04
             #test_show_1("this is flag 8")
             for i in range(len(wire_temp)):
-                #print(wire_temp[i][0],"lable=",wire_temp[i][3])
+            
                 temp_use=json.loads(date_temp.get(str(wire_temp[i][3])))
-                #print(temp_use)
+                
                 temp_use[1]=wire_temp[i][1]
                 temp_use[2]=wire_temp[i][2]
                 temp_use[3]=wire_temp[i][2]
@@ -376,10 +364,10 @@ def show_allform_window():#日期,序號,廠商名,資料
             d2=json.loads(d1)
             if(number == d2[0] or number == d2[4] ):
                 test_show_1("有相同產品名稱或相同編號")
-                #print(list1[0],"  :",end='')
+                
                 #number=input()
                 flag =1
-                #print(i)
+            
                 break
         return flag
 
@@ -392,7 +380,7 @@ def show_allform_window():#日期,序號,廠商名,資料
 
     def middle_clean():#清除中間顯示
         Canvas=tk.Canvas
-        cv = Canvas(window,width=350, height=600)#,bg = 'white'
+        cv = Canvas(window,width=350, height=700)#,bg = 'white'
             #           创建一个矩形，坐标为(10,10,110,110)
             #cv.create_rectangle(10,10,110,110)
         cv.place(x=300,y=0)
@@ -406,28 +394,7 @@ def show_allform_window():#日期,序號,廠商名,資料
     
     #0011   #p002
     def find_goods(keyin,flag):#找到 產品  資料  不顯示
-        """
-        test=test_in_date()
-        date_temp=test[0]
-        goods_a= int(test[1])
-        print("fresh=",fresh[0]) #
-        print("old  goo",goods_a)
         
-        if fresh[0]==1:
-            #test_in_date()
-            
-            #date_temp=(readdate(path_goods))#產品與電線用
-            test=test_in_date()
-            date_temp=test[0]
-            goods_a= int(test[1])
-            
-            
-            #goods_a= int(test_in_date())
-            print("new goo",goods_a)
-            fresh[0]=0
-        
-        print("fresh  2 =",fresh[0])
-        """
         
         
         list_inquire=[] #收集找到的值
@@ -436,34 +403,31 @@ def show_allform_window():#日期,序號,廠商名,資料
             d2=json.loads(d1)
             if(keyin in d2[0] or keyin in d2[4] ):
                 list_inquire.append(d2)    
-                        
-                        
 
-                #print(list_inquire)
         if(len(list_inquire)==0):
-            #print("找不到資料")   
+        
             test_show_1("找不到資料")
             
         elif(len(list_inquire)==1):
             
-            #print("test",list_inquire[0][4],flag)
+        
             find_goods_lable(list_inquire[0][4],flag)
             #01-01-03 #01-02-03 #01-04-03
             #03-02-06 #03-02-fix-04 
-            #037b 
+            #04-02-05
 
         
         elif(len(list_inquire)>20): 
             test_show_1("請縮小尋找範圍")         
         else:
-            #print('@@@@end') #
-            #test_show_1(len(list_inquire))
+        
+            
             dict_goods={}
             for i in range(len(list_inquire)):
                 dict_goods[i]=(list_inquire[i][0],list_inquire[i][4])
             middle_clean()
-            middle_show_b(1,"產品資訊",dict_goods,flag)#01-01-03a #p005
-            #01-04-03a #03-02-06a #03-02-fix-04a #037b
+            middle_show_b(1,"產品資訊",dict_goods,flag)#01-01-03a 
+            #01-04-03a #03-02-06a #03-02-fix-04a #04-02-05a
     #0012  #p003
     def find_goods_lable(keyin,flag):#找到 產品標籤 資料  再顯示
         
@@ -473,7 +437,7 @@ def show_allform_window():#日期,序號,廠商名,資料
             d1=date_temp.get(str(i))
             d2=json.loads(d1)
             if(keyin == d2[4] ):
-                #print("label",i)
+                
                 list_inquire.append(d2)  
                 lable= i
                 break
@@ -481,7 +445,7 @@ def show_allform_window():#日期,序號,廠商名,資料
         middle_clean()
         #test_show_1(lable)#fixfixfxi
         if flag==1 :#01-01  
-            #print("tesst",list_inquire[0],)
+    
             middle_show_a(1,"產品資訊",list_inquire[0],flag)#01-01-04
         if flag==4:
             
@@ -490,18 +454,16 @@ def show_allform_window():#日期,序號,廠商名,資料
             #test_show_1("flag")
             middle_show_b(2,"修改產品資料",list_inquire[0],flag)#01-02-04
         if flag==10:#03-02 #p031 
-            #print(list_inquire[0],flag) 
+            
             keyin_entry_form(3,"輸入數量",10,list_inquire[0]) #03-02-07
         if flag==11:#03-02 #p033d
-            #print(list_inquire[0],flag) ##03-02-fix-05
+        ##03-02-fix-05
             keyin_entry_form_fix(3,"輸入數量(修改)",11,list_inquire[0]) 
-        if flag==16:
+        if flag==16:#04-02-06
             form_search.append(list_inquire[0][0]) #037c
             form_search_only(form_search,flag) 
-            
-            #print(form_search)
-        #left_clean()
-     #0016  
+
+    #0016  
     def find_goods_lableonly_b(keyin):#編號 找到 產品標籤
         
         #list_inquire=[] #收集找到的值
@@ -567,24 +529,15 @@ def show_allform_window():#日期,序號,廠商名,資料
                         find_goods(entry1.get(),flag)#031
                         test_show_1(entry1.get()) #03-02-05
                     if mode==3:
-                        #keyin=entry1.get()
-                        #print("3",entry1.get())
+                        
                         
                         one_form.append(float(entry1.get()))
                         one_form.append(temp[5])
                         keyin_entry_form(4,"輸入單價",10,temp) #03-02-08
                     if mode==4:
-                        
-                        
-                        
                         one_form.append(float(entry1.get()))
-                        
                         one_form.append(float(one_form[1])*float(one_form[3]))
-                        #print("4",one_form)
-                        #print(head_temp)
-                        #print(serial)
-                        #use.append(entry1.get())
-                        #use.append(temp[5])
+                        
                         keyin_entry_form(5,"total",10,temp) #03-02-09
                     
 
@@ -592,8 +545,7 @@ def show_allform_window():#日期,序號,廠商名,資料
         
         def save():#p032a #03-02-10
             test_show_1("save")               
-            #print(head_temp)
-            #print(one_form)
+            
             test=[0,0,0,0,0]
             for i in range(len(test)):
                 test[i]=one_form[i]
@@ -603,20 +555,14 @@ def show_allform_window():#日期,序號,廠商名,資料
             
             left_clean()
             right_clean()
-            #print(head_temp)
             right_show(head_temp[0],head_temp[1],head_temp[2],total_form,flag)
             #03-02-11
         def notsave():
             for i in range(0,5):
                     del one_form[0]
-                #print("new",one_form)
+                
             left_clean()
             keyin_entry_form(2,"輸入產品名",10,0)
-            
-            
-            
-        
-
 
         #left_clean()
         title = tk.Label(window, text=title ,fg="#8B008B", bg="#7AFEC6", width=20,font = ('Arial', 16))
@@ -648,12 +594,9 @@ def show_allform_window():#日期,序號,廠商名,資料
             
         elif mode==3:#p031
             
-            #title = tk.Label(window, text='日期:'+head_temp[0] ,fg="#8B008B", bg="#7AFEC6", width=20,font = ('Arial', 16))
-            #title.place(x=0,y=360)
-            #title = tk.Label(window, text='客戶:' +head_temp[1] ,fg="#8B008B", bg="#7AFEC6", width=20,font = ('Arial', 16))
-            #title.place(x=0,y=395)
             
-            title = tk.Label(window, text='產品名:'+"("+temp[0]+")" ,fg="#8B008B", bg="#7AFEC6", width=20,font = ('Arial', 16))
+            
+            title = tk.Label(window, text='產品名:'+str(temp[0] ),fg="#8B008B", bg="#7AFEC6", width=20,font = ('Arial', 16))
             title.place(x=0,y=430)
             
             one_form.append(temp[0])#產品名
@@ -663,7 +606,7 @@ def show_allform_window():#日期,序號,廠商名,資料
         elif mode==4:
             
             title = tk.Label(window, text='數量:' +str(one_form[1])+one_form[2],fg="#8B008B", bg="#7AFEC6", width=20,font = ('Arial', 16))
-            #print(use)
+            
             title.place(x=0,y=465)
             for i in range(len(customer)):
                 if head_temp[2]==customer[i]:
@@ -674,13 +617,12 @@ def show_allform_window():#日期,序號,廠商名,資料
                 else:
                     
                     flag_a=2
-            #print("te",head_temp[2])#
-            #print("flag_a=",flag_a)
+            
             if flag_a==1:
-                title = tk.Label(window, text='單價:'+"("+temp[2]+")" ,fg="#8B008B", bg="#7AFEC6", width=20,font = ('Arial', 16))
+                title = tk.Label(window, text='單價:'+str(temp[2] ),fg="#8B008B", bg="#7AFEC6", width=20,font = ('Arial', 16))
                 title.place(x=0,y=500)
             else:
-                title = tk.Label(window, text='單價:'+"("+temp[1]+")" ,fg="#8B008B", bg="#7AFEC6", width=20,font = ('Arial', 16))
+                title = tk.Label(window, text='單價:'+str(temp[1] ) ,fg="#8B008B", bg="#7AFEC6", width=20,font = ('Arial', 16))
                 title.place(x=0,y=500)
             
         elif mode==5:
@@ -699,31 +641,24 @@ def show_allform_window():#日期,序號,廠商名,資料
 
     #03-02 #p033c
     def keyin_entry_form_fix(mode,title,flag,temp):# 模式   標頭名稱
-        #if isValidDate(entry1.get()) != False:
-        
 
         def onok():
             if entry1.get()!= "":
                 if flag==11:
                     
                     if mode==2:
-                        #print(entry1.get(),flag)
+                        
                         find_goods(entry1.get(),flag)#
                         #03-02-fix-03
 
-                        #test_show_1(entry1.get())
+                        
                     if mode==3:
-                        #keyin=entry1.get()
-                        #print("3",entry1.get())
-                        #print("3 pass")
+                        
                         one_form.append(float(entry1.get()))
                         one_form.append(temp[5])
                         keyin_entry_form_fix(4,"輸入單價(修改)",11,temp)
                         #03-02-fix-06
                     if mode==4:
-                        
-                        
-                        
                         one_form.append(float(entry1.get()))
                         
                         one_form.append(float(one_form[1])*float(one_form[3]))
@@ -735,15 +670,13 @@ def show_allform_window():#日期,序號,廠商名,資料
         
         def save():#p032a #03-02-fix-08
             test_show_1("save")               
-            #print(head_temp)
-            #print(one_form)
-            #print(form_choose)
+            
             test=[0,0,0,0,0]
             for i in range(len(test)):
                 test[i]=one_form[i]
             
             total_form[form_choose[0]]=test
-            #total_form.append(test)
+            
             
             left_clean()
             right_clean()
@@ -751,13 +684,7 @@ def show_allform_window():#日期,序號,廠商名,資料
             
         def notsave():
             print("notsave")
-            
-            
-            
-        
 
-
-        #left_clean()
         title = tk.Label(window, text=title ,fg="#8B008B", bg="#7AFEC6", width=20,font = ('Arial', 16))
         title.place(x=0,y=250)
         if mode!=5:   
@@ -767,10 +694,6 @@ def show_allform_window():#日期,序號,廠商名,資料
             command=onok)
             button.place(x=60,y=310)
         
-        
-            
-        
-            
         if mode==2:#mode==2
             title = tk.Label(window, text='日期:'+head_temp[0] ,fg="#8B008B", bg="#7AFEC6", width=20,font = ('Arial', 16))
             title.place(x=0,y=360)
@@ -783,18 +706,18 @@ def show_allform_window():#日期,序號,廠商名,資料
         elif mode==3:
 
             
-            title = tk.Label(window, text='產品名:'+"("+temp[0]+")" ,fg="#8B008B", bg="#7AFEC6", width=20,font = ('Arial', 16))
+            title = tk.Label(window, text='產品名:'+str(temp[0] ),fg="#8B008B", bg="#7AFEC6", width=20,font = ('Arial', 16))
             title.place(x=0,y=430)
             
             one_form.append(temp[0])#產品名
-            #print("test",one_form)
+            
             title = tk.Label(window, text='數量:' ,fg="#8B008B", bg="#7AFEC6", width=20,font = ('Arial', 16))
             title.place(x=0,y=465)
             
         elif mode==4:
             
             title = tk.Label(window, text='數量:' +str(one_form[1])+one_form[2],fg="#8B008B", bg="#7AFEC6", width=20,font = ('Arial', 16))
-            #print(use)
+            
             title.place(x=0,y=465)
             for i in range(len(customer)):
                 if head_temp[2]==customer[i]:
@@ -803,10 +726,10 @@ def show_allform_window():#日期,序號,廠商名,資料
                 else:
                     flag_a=2
             if flag_a==1:
-                title = tk.Label(window, text='單價:'+"("+temp[2]+")" ,fg="#8B008B", bg="#7AFEC6", width=20,font = ('Arial', 16))
+                title = tk.Label(window, text='單價:'+str(temp[2]) ,fg="#8B008B", bg="#7AFEC6", width=20,font = ('Arial', 16))
                 title.place(x=0,y=500)
             else:
-                title = tk.Label(window, text='單價:'+"("+temp[1]+")" ,fg="#8B008B", bg="#7AFEC6", width=20,font = ('Arial', 16))
+                title = tk.Label(window, text='單價:'+str(temp[1]) ,fg="#8B008B", bg="#7AFEC6", width=20,font = ('Arial', 16))
                 title.place(x=0,y=500)
             
         elif mode==5:
@@ -863,17 +786,15 @@ def show_allform_window():#日期,序號,廠商名,資料
                         
                     if len(form_search) == 1:
                         keyin_entry(1,"(結束時間)",flag)#
-                        #03-03-02   #03-04-02
+                        #03-03-02   #03-04-02 #04-01-02 #04-02-02
                     else:                            
                         #03-03-03 #03-04-03
-                        if flag==16:
-                            
-                            
+                        if flag==16:#04-02-03
                             keyin_entry_goods(1,"產品名稱",flag)
                         elif flag==15:
                             #test_show_1("hello")#038
                             form_search_only(form_search,flag)
-
+                            #04-01-03
                         else:#flag=12 13
                             form_search_only(form_search,flag)
                         
@@ -891,7 +812,8 @@ def show_allform_window():#日期,序號,廠商名,資料
 
         else:
             #left_clean()
-            print("enf")
+            
+            test_show_1("")
 
         
 
@@ -901,7 +823,8 @@ def show_allform_window():#日期,序號,廠商名,資料
             if entry1.get()!= "":
                 if flag==16: 
                     find_goods(entry1.get(),flag) 
-                
+                    #04-02-04
+
                 
         left_clean()
         
@@ -916,8 +839,8 @@ def show_allform_window():#日期,序號,廠商名,資料
             button.place(x=60,y=310)
 
         else:
-            #left_clean()
-            print("enf")
+            test_show_1("")
+            
     
     
     
@@ -925,14 +848,11 @@ def show_allform_window():#日期,序號,廠商名,資料
     
     ####0001a
     def left_show_a(mode,title,temp):#模式 0 不顯 1 顯示,表頭,資料
-        #print("left show=",date_temp.get("a"))
-        
-        
+
         mode=mode
         title=title
         temp=temp
-        #main_read()
-        #left_clean()
+        
         middle_clean()
         right_clean()
         
@@ -1029,7 +949,7 @@ def show_allform_window():#日期,序號,廠商名,資料
                 
                 else:
                     test_show_1(var.get())
-                    test_show_2("heer")
+                    
                     left_show_a(0,"主畫面",tops)
             
             left_start_x=10
@@ -1142,17 +1062,17 @@ def show_allform_window():#日期,序號,廠商名,資料
                     for i in range(len(trans_temp)):
                         del trans_temp[0]
                     right_clean()
-                    keyin_entry(1,"(開始日期)",15)#038
+                    keyin_entry(1,"(開始日期)",15)#04-01-01
                     
                     
                 elif var.get()==2:
                     test_show_1(var.get())
 
-                    for i in range(len(total_form)):
-                        del form_search[0]   
-                    for i in range(len(form_choose)):
-                        del trans_temp[0]    
-                    keyin_entry(1,"(開始日期)",16)#p037   
+                    for i in range(len(form_search)):
+                        del form_search[0]
+                    for i in range(len(trans_temp)):
+                        del trans_temp[0]   
+                    keyin_entry(1,"(開始日期)",16)#04-01-02  
 
             
                 
@@ -1183,32 +1103,41 @@ def show_allform_window():#日期,序號,廠商名,資料
             def Selection ():
                 middle_clean()
                 left_clean()
-                
+                right_clean()
                 #test_show_1(var.get())  #change
-                if var.get()==1:
+                if var.get()==1 or var.get()==4:
+
+                    dict_business_all_a={}
+                    for i in range(1001,int(factory_f)+1):
+                        temp=(json.loads(date_temp.get(str(i))))
+                        
+                        keep=i-1000
+                        dict_business_all_a[keep]=temp
                 
-                    test_show_1(var.get())
+                    for i in range(1101,int(business_b)+1):
+                        temp=(json.loads(date_temp.get(str(i))))
+                        
+                        dict_business_all_a[i-1101+keep+1]=temp
                     
-                    right_clean()
-                    
-                    
-                    
+                    if var.get()==1:#05-01-01
+                        middle_show_b(1,"廠商 客戶 名稱",dict_business_all_a,17) #040
+                    elif var.get()==4:##05-04-01
+                        middle_show_b(1,"廠商 客戶 名稱",dict_business_all_a,20)#042
+        
                 elif var.get()==2:
-                    test_show_1(var.get())
-
-                    
-                     
-                
+                    test_show_1(var.get())#
+                    temp=["","",""] #05-02-01
+                    middle_show_b(3,"建立新產品",temp,18)
                 elif var.get()==3:
-                    test_show_1(var.get())
-
+                    test_show_1(var.get())#
+                    temp=["","",""]#05-03-01
+                    middle_show_b(3,"建立新產品",temp,19)
                     
                     
                 
         
                 else:
-                    #test_show_1(var.get())
-                    #test_show_2("back home")
+                    
                     left_show_a(0,"主畫面",tops)
             
             left_start_x=10
@@ -1252,22 +1181,13 @@ def show_allform_window():#日期,序號,廠商名,資料
             left_clean()
             middle_clean()
     
-    
-    
-    
-    
     #0014
-    
-    
-    
-    
     def data_save_or_delete(mode,temp):#01-02-04 #p009
         
         if mode==1:#01-02-10
             lable=find_goods_lableonly(temp[4])
             temp=json.dumps(temp)    
-            #print(temp)
-            #print(lable)
+            
             update(path_goods,lable,temp)##建立 位置/檔名/資料/    
             
             updata_date_temp(str(lable),temp)#只有可以變更  #useuse
@@ -1277,7 +1197,7 @@ def show_allform_window():#日期,序號,廠商名,資料
             middle_clean()
             right_clean()
             left_show_a(0,"主畫面",tops)# 開始畫面
-            #print("test",read_date_temp(lable)) 
+            
             
             
         elif mode==2:#p012  #01-03-06 #02-02-05
@@ -1302,6 +1222,46 @@ def show_allform_window():#日期,序號,廠商名,資料
                 
                 test_temp.append(66)
                 window.destroy()#關閉螢幕
+        elif mode==4:#05-01-06
+            
+            
+            for key in business_list_all:
+                if temp[1]==business_list_all[key][1]:
+                    lable=(key)
+            
+            temp=json.dumps(temp)    
+            
+            update(path_goods,lable,temp)##建立 位置/檔名/資料/    
+            
+            updata_date_temp(str(lable),temp)#只有可以變更  #useuse
+            
+            left_show_a(0,"主畫面",tops)# 開始畫面
+            
+        elif mode==5:#廠商存檔 #
+            #print(len(date_temp))
+            
+            
+            temp=json.dumps(temp)
+            
+            
+            update(path_goods,str(int(factory_f)+1),temp)
+            update(path_goods,'f',int(factory_f)+1)
+            
+            test_temp.append(66)
+            window.destroy()#退出 關閉螢幕
+        
+        elif mode==6:#客戶存檔 #
+            temp=json.dumps(temp)
+            
+            
+            update(path_goods,str(int(business_b)+1),temp)
+            update(path_goods,'b',int(business_b)+1)
+            test_temp.append(66)
+            window.destroy()#退出 關閉螢幕
+
+
+            
+
         else:#p021 #mode=3 電線用
             if int(temp[0]) !=0 and int(temp[1]) !=0 and int(temp[2]) !=0 and int(temp[3]) !=0 and int(temp[4]) !=0 :
             
@@ -1313,43 +1273,59 @@ def show_allform_window():#日期,序號,廠商名,資料
                 update(path_goods,'wire',wire_a)
                 test_temp.append(66)
                 window.destroy()#關閉螢幕
-                
-                
-                
             else:
                 test_show_1("資料不完整 ")   
             
     #0014
     def ask_yes_or_no(mode,temp):#01-04-06              
-        lable=find_goods_lableonly(temp[4])
-        #print("ttt==",lable)
         
         def sure():
-            #print(lable)
-            #print("old=",date_temp.get("a"))
-            
-            #print(goods_a)
+        
             if mode==1:#01-04 use 刪除畫面 
                 if int(lable)==int(goods_a):
                     
                     deldate(path_goods+str(lable))
                     update(path_goods,'a',goods_a-1)
-                    #update(path_goods,'keep',keep_for_net+1)#for test
                     test_show_1("del_date")
-                    #main_read()
+                    
                 
                 else:
                         
                     temp=readdate(path_goods+str(goods_a))
-                    #print(temp)
-                    update(path_goods,lable,temp)
-                    #update(path_goods,'keep',keep_for_net+1)#for test
+                    
+                    update(path_goods,str(lable),temp)
+                    
                     deldate(path_goods+str(goods_a))
                     update(path_goods,'a',goods_a-1)
                     test_show_1("del_date")
-                    #print("del_date")
-                    #main_read()
-            
+                    
+            elif mode==2:#05-04-04
+                if int(lable)< 1100:
+                    if int(lable)==int(factory_f):
+                        deldate(path_goods+str(lable))
+                        update(path_goods,'f',factory_f-1)
+                    else:
+                        temp=json.loads(readdate(path_goods+str(factory_f)))
+                        temp2=json.loads(readdate(path_goods+str(lable)))
+                        temp[0]=temp2[0]
+                        temp=json.dumps(temp)
+                        update(path_goods,str(lable),temp)
+                        deldate(path_goods+str(factory_f))
+                        update(path_goods,'f',factory_f-1)
+                else:
+                    
+                    if  int(lable)==int(business_b):
+                        deldate(path_goods+str(lable))
+                        update(path_goods,'b',business_b-1)
+                    else:
+                        temp=json.loads(readdate(path_goods+str(business_b)))
+                        temp2=json.loads(readdate(path_goods+str(lable)))
+                        temp[0]=temp2[0]
+                        temp=json.dumps(temp)
+                        update(path_goods,str(lable),temp)
+                        deldate(path_goods+str(business_b))
+                        update(path_goods,'b',business_b-1)  
+                    
             test_temp.append(66)
             window.destroy()#退出 關閉螢幕 
             
@@ -1362,6 +1338,15 @@ def show_allform_window():#日期,序號,廠商名,資料
             
             test_show_1("not delete goods")#01-04-04
         
+        if mode==1:
+            lable=find_goods_lableonly(temp[4])
+        else:
+            for key in business_list_all:
+                if temp[1]==business_list_all[key][1]:
+                    lable=(key)#999
+            test_show_1(lable)
+        
+        
         
         button = tk.Button(window, text="確定刪除" ,fg="#8B008B", bg="#7AFEC6", width=9,font = ('Arial', 16),
         command=sure)
@@ -1370,7 +1355,7 @@ def show_allform_window():#日期,序號,廠商名,資料
         command=notsure)
         button2.place(x=425,y=310)
 
-        
+
 
     #0017 #p017
     def keyin_entry2(mode,title,temp):#   刪除或新增
@@ -1380,21 +1365,17 @@ def show_allform_window():#日期,序號,廠商名,資料
                 
                 
             wire_a= json.loads(date_temp.get('wire'))#產品數量_       
-            #middle_show(1,"修改畫面",temp,2)
-            #middle_show_b(1,"修改畫面",temp,2)
+            
             left_clean()
             if mode==1:#02-02-07
                 middle_show_b(4,"現有設定檔",temp,6) 
             elif mode==2:#p019 02-02-09 刪除設定檔 
-                #test_show_1(temp)   
-                #test_show_2(wire_a)
+                
                 for i in range(len(wire_a)):
                     if temp==wire_a[i][0]:
                         keep=i
                         
                 del wire_a[keep]        
-                #test_show_2(wire_a)
-                
                 
                 if len(wire_a)==0:
                     #test_show_1(i)
@@ -1422,8 +1403,7 @@ def show_allform_window():#日期,序號,廠商名,資料
         if mode==1:#02-02-02 一開始用
             title = tk.Label(window, text=title ,fg="#8B008B", bg="#7AFEC6", width=20,font = ('Arial', 16))
             title.place(x=0,y=250)
-            #entry1 = tk.Entry(window, width = 20, text='y',bd=5,font = ('Arial', 16))    # 輸入欄位所在視窗  # 輸入欄位的寬度                    
-            #entry1.place(x=0,y=280)
+            
             button = tk.Button(window, text="刪除" ,fg="#8B008B", bg="#7AFEC6", width=9,font = ('Arial', 16),
             command=delete)
             button.place(x=0,y=310)
@@ -1436,8 +1416,6 @@ def show_allform_window():#日期,序號,廠商名,資料
             title = tk.Label(window, text=temp ,fg="#8B008B", bg="#7AFEC6", width=20,font = ('Arial', 16))
             title.place(x=0,y=280)
             
-            #entry1 = tk.Entry(window, width = 20, text='y',bd=5,font = ('Arial', 16))    # 輸入欄位所在視窗  # 輸入欄位的寬度                    
-            #entry1.place(x=0,y=280)
             button = tk.Button(window, text="刪除" ,fg="#8B008B", bg="#7AFEC6", width=9,font = ('Arial', 16),
             command=delete)
             button.place(x=0,y=310)
@@ -1479,14 +1457,22 @@ def show_allform_window():#日期,序號,廠商名,資料
                 R.place(x=middle_start_x,y=middle_start_y)
                 middle_start_y=middle_start_y+30
             ask_yes_or_no(1,temp)#01-04-05
-                    #print(temp)
-            #test_show_1(temp)
-    
-    
-    
-    
-    
-    
+            
+        if mode== 3: #
+            list1 = ["編號","名稱","電話"]
+            middle_start_x=300
+            middle_start_y=10
+
+            title = tk.Label(window, text=title ,fg="#8B008B", bg="#7AFEC6", width=30,font = ('Arial', 14))
+            title.place(x=middle_start_x,y=middle_start_y)
+            middle_start_y=middle_start_y+30
+            
+            for i in range(len(list1)):#
+                R=tk.Label(window, text=list1[i]+":"+str(temp[i]),fg="#8B008B", width=30,font = ('Arial', 13))
+                R.place(x=middle_start_x,y=middle_start_y)
+                middle_start_y=middle_start_y+30
+            ask_yes_or_no(2,temp) #05-04-03
+
     #0002b #p005
     def middle_show_b(mode,title,temp,flag):#模式 0 不顯 1 只顯示產品,表頭,資料
         list1 = ["名稱","成本","大賣","小賣","編號","單位","數量","簡稱"]
@@ -1496,8 +1482,7 @@ def show_allform_window():#日期,序號,廠商名,資料
             #01-02-06
             left_clean()
             def fix():
-                #print("01-02 test",flag)
-                #test_show_2(entry1.get())
+                
                 if flag==7:#p021 02-02建立新資料用
                     if entry1.get()!= "" and entry1.get().isdigit()==True:
                         temp[choose]=entry1.get()
@@ -1506,17 +1491,17 @@ def show_allform_window():#日期,序號,廠商名,資料
                         left_clean()
                 
                 if flag !=3 and flag !=7:
+                    
                     if entry1.get()!= "" and entry1.get().isdigit()==True:
                         
                         temp[choose]=entry1.get()
                         middle_show_b(2,"修改畫面",temp,flag) 
-                        #01-02-07
+                        #01-02-07  #05-01-04
                         
                         left_clean()
                         
                 if flag==3:
-                    #print("flag==3")
-                    #test_show_1(choose)
+                    
                     if choose==0 or choose==4: #P011 # 01-03 USE
                         test=check_goods(entry1.get(),0)
                         if entry1.get()!= "" and test !=1  :
@@ -1536,18 +1521,27 @@ def show_allform_window():#日期,序號,廠商名,資料
                             temp[choose]=entry1.get()
                             middle_show_b(3,"修改畫面",temp,flag)
                     left_clean()
-                    #test_show_1(choose)
+                if flag==18 or flag==19:
+                    if entry1.get()!= "":
+                        temp[choose]=entry1.get() #05-02-03 #05-03-03
+                        middle_show_b(3,"修改畫面",temp,flag)
             
             def save():
                 if flag==7:
                     data_save_or_delete(3,temp)#01-02-04 #p021
                 elif flag==2:#elif flag != 3 and flag !=7 and flag !=14:
                     data_save_or_delete(1,temp)#01-02-09 #p009
-                    #print("now now",flag)
+                    
                 elif flag==14:
-                    #print("now",flag)
+                    
                     data_save_or_delete_a(1,temp) #p036
                     #03-02 更改 03
+                elif flag==17:#05-01-05
+                    data_save_or_delete(4,temp)
+                elif flag==18 :#
+                    data_save_or_delete(5,temp)
+                elif flag==19:
+                    data_save_or_delete(6,temp)
                 else:#flag==3 flag==5
                     data_save_or_delete(2,temp)#01-03-04 #p012 
                     #02-02-05
@@ -1565,7 +1559,7 @@ def show_allform_window():#日期,序號,廠商名,資料
 
 
         if mode==1:#01-01 #p005a
-            #print("now flag= ",flag)
+            
             middle_start_x=300
             middle_start_y=10
 
@@ -1581,15 +1575,10 @@ def show_allform_window():#日期,序號,廠商名,資料
                     left_clean()
                     find_goods_lable(number[1],flag)#01-01-03b
                     #01-02-03b
-                #if flag != 9 and flag != 10:
-                    #number=(temp.get(var.get()))
-                    #print(number[1])
-                        #test_show_1(flag)#01-01
-                    
-                    #find_goods_lable(number[1],flag)# 
+                
                 if flag==10 or flag==11:#p030  flag==10
                     number=(temp.get(var.get()))
-                    #print(number[1])
+                    
                     if len(head_temp)==2:#防止 多項產品的append
                         head_temp.append(number)
                         #test_show_1(head_temp) #p030b
@@ -1599,7 +1588,7 @@ def show_allform_window():#日期,序號,廠商名,資料
                         find_goods_lable(number[1],flag)#p030b
                         #03-02-06b
                         #多項產品的append
-                    #print("head=",head_temp)
+                    
                 if flag==9  or flag==16:#else:#flag != 9
                         #test_show_1("here")  #p025                    
                     
@@ -1613,11 +1602,12 @@ def show_allform_window():#日期,序號,廠商名,資料
                         form_search.append(number[0])
                         #test_show_1(form_search) #037d
                         form_search_only(form_search,flag) 
+                        #04-02-06
                 
                 if flag==12 or flag==13 :#034c #03-03 #035c
-                        #test_show_1("here")     #            
+                            
                     number=(temp.get(var.get()))
-                    #test_show_1(number[0])    
+                    
                     
                     
                     
@@ -1636,6 +1626,19 @@ def show_allform_window():#日期,序號,廠商名,資料
                     if flag==13:
                         #03-04-05
                         right_show(head_temp[0],head_temp[1],head_temp[2],total_form,13)
+                elif flag==17:#040a
+                    
+                    number=(temp.get(var.get()))
+                    #test_show_1(number)#05-01-02
+                    middle_show_b(2,"修",number,flag)
+                elif flag==20:
+                    number=(temp.get(var.get()))
+                    
+                    middle_clean()#05-04-02
+                    middle_show_a(3,"廠商/客戶 資訊",number,flag)
+
+
+
             var = tk.IntVar()#設置 var 內容
             var.set(0)
 
@@ -1646,7 +1649,7 @@ def show_allform_window():#日期,序號,廠商名,資料
                 middle_start_y=middle_start_y+30
         
         elif mode==2:#01-02-08  #01-02-05
-            #print(temp)   #03-02 更改 02
+        #03-02 更改 02
 
             middle_start_x=300
             middle_start_y=10
@@ -1656,21 +1659,40 @@ def show_allform_window():#日期,序號,廠商名,資料
             title.place(x=middle_start_x,y=middle_start_y)
             middle_start_y=middle_start_y+30
             
-            dict_goods={} 
-            for i in range(len(temp)):
-                dict_goods[i]=list1[i]+" : "+str(temp[i])
-                #print(dict_goods)
+            if flag==17:
+                #040b
+                
+                middle_clean()
+                title = tk.Label(window, text="編輯廠商資料" ,fg="#8B008B", bg="#7AFEC6", 
+                width=30,font = ('Arial', 13))#,font = ('Arial', 14)
+                title.place(x=300,y=10)
+                
+                
+                list_customer=["編號","客戶名稱","電話"]
+                dict_goods={} 
+                for i in range(len(temp)):
+                    dict_goods[i]=list_customer[i]+" : "+str(temp[i])
+            
+            else:
+                dict_goods={} 
+                for i in range(len(temp)):
+                    dict_goods[i]=list1[i]+" : "+str(temp[i])
+                
             def Selection ():
-                #print(temp [var.get()])
-                #print(var.get())
-                #test_show_1(var.get())
-                if(var.get()==1 or var.get()==2 or var.get()==3 or var.get()==6 ):
+                
+                if flag==17:#040c
+                    
+                    
+                    if(var.get()==2  ): #05-01-03
+                        head=list_customer[var.get()]+str(temp[var.get()])
+                        keyin_entry1(head,var.get(),temp)
+                
+                else:
+                    if(var.get()==1 or var.get()==2 or var.get()==3 or var.get()==6 ):
+                            
+                        head=list1[var.get()]+str(temp[var.get()])
+                        keyin_entry1(head,var.get(),temp)#01-02-06
                         
-                    head=list1[var.get()]+str(temp[var.get()])
-                    keyin_entry1(head,var.get(),temp)#01-02-06
-                    #number=(temp.get(var.get()))
-                    #print(number[1])
-                    #find_goods_lable(number[1])
             var = tk.IntVar()#設置 var 內容
             var.set(0)
 
@@ -1680,8 +1702,7 @@ def show_allform_window():#日期,序號,廠商名,資料
                 R.place(x=middle_start_x,y=middle_start_y)
                 middle_start_y=middle_start_y+30
         elif mode==3 : #p011 #01-03-02
-            #test_show_1(flag)
-            #print("flag=",flag)
+            
             middle_start_x=300
             middle_start_y=10
 
@@ -1693,7 +1714,22 @@ def show_allform_window():#日期,序號,廠商名,資料
                 dict_goods={} 
                 for i in range(len(temp)):
                     dict_goods[i]=list1[i]+" : "+str(temp[i])
-                    #print(dict_goods)
+                    
+            elif flag==18:
+                list_customer=["編號","客戶名稱","電話"]
+                dict_goods={} #
+                
+                temp[0]="fa"+str(factory_f+1)
+                for i in range(len(temp)):
+                    dict_goods[i]=list_customer[i]+" : "+str(temp[i])
+                
+            elif flag==19:
+                list_customer=["編號","客戶名稱","電話"]
+                dict_goods={} #
+                temp[0]="bu"+str(business_b+1)
+                for i in range(len(temp)):
+                    dict_goods[i]=list_customer[i]+" : "+str(temp[i])   
+            
             else:#02-02-04
                 heada=["設定年月 ex (11201)","3.5 二芯以下 ex (212)","8mm四芯以下 ex (212)","白扁線設定 ex (212)","電線設定 ex (212)"]
                 dict_goods={} 
@@ -1701,22 +1737,24 @@ def show_allform_window():#日期,序號,廠商名,資料
                     dict_goods[i]=heada[i]+"--"+str(temp[i])       
             
             def Selection ():
-                #print(temp [var.get()])#p011
-                #print(var.get())
                 
                 if flag==3:
                     head=list1[var.get()]+str(temp[var.get()])
                     keyin_entry1(head,var.get(),temp) #01-03-03
+                elif flag==18:
+                    if var.get() != 0:
+                        head=list_customer[var.get()]+str(temp[var.get()])
+                        keyin_entry1(head,var.get(),temp)#05-02-02 
+                elif flag==19:
+                    if var.get() != 0:
+                        head=list_customer[var.get()]+str(temp[var.get()])
+                        keyin_entry1(head,var.get(),temp)#05-03-02
+                
+                
                 else:
                     head=heada[var.get()]+str(temp[var.get()])
                     keyin_entry1(head,var.get(),temp)  #02-02-04 
                 
-                
-                
-                    
-                    #number=(temp.get(var.get()))
-                    #print(number[1])
-                    #find_goods_lable(number[1])
             var = tk.IntVar()#設置 var 內容
             var.set(0)
 
@@ -1725,11 +1763,9 @@ def show_allform_window():#日期,序號,廠商名,資料
                 command=Selection,bg='yellow',width=30,font = ('Arial', 13))
                 R.place(x=middle_start_x,y=middle_start_y)
                 middle_start_y=middle_start_y+30
-                #print("jjjj")
-                #middle_clean()           
-            
+                
         elif mode==4 : #p014  02-01-02 #02-03-02 #03-02-修改單筆02
-            #test_show_1(flag)
+            
             middle_start_x=300
             middle_start_y=10
 
@@ -1741,7 +1777,7 @@ def show_allform_window():#日期,序號,廠商名,資料
                 dict_goods={} 
                 for i in range(len(temp)):
                     dict_goods[i]=str(temp[i])
-                    #print(dict_goods)
+                    
             elif flag==14:
                 dict_goods={} 
                 for i in range(len(temp)):
@@ -1751,21 +1787,20 @@ def show_allform_window():#日期,序號,廠商名,資料
                 dict_goods={} 
                 for i in range(len(temp)):
                     dict_goods[i]=head[i]+"--"+str(temp[i])
-                #test_show_1("dsfs")
+                
             
             def Selection ():
                 if flag==10:
-                    #print("flag==10",total_form) #033b
+                    
                     for i in range(len(form_choose)):
                         del form_choose[0] 
                     form_choose.append(var.get())
-                    #print("choose=",form_choose)
-                    #print( var.get())
+                    
                     for i in range(len(one_form)):
                         del one_form[0]
                     keyin_entry_form_fix(2,"輸入產品名(修改)",11,0)
                     ##03-02-fix-02 #03-02-fix-04b
-                if flag==5 or flag==8:#print(temp [var.get()][1])
+                if flag==5 or flag==8:
                     wire_print(temp [var.get()],flag)#p015 #02-01-03 
                     #02-03-03
                 elif flag==6:
@@ -1780,7 +1815,7 @@ def show_allform_window():#日期,序號,廠商名,資料
                     li=(find_goods_lableonly_b(temp [var.get()][0]))
                     middle_show_b(2,"修改產品資料",li,flag)
                     #03-02 更改 02
-                    #print(k,li)
+                    
 
 
 
@@ -1792,12 +1827,7 @@ def show_allform_window():#日期,序號,廠商名,資料
                 command=Selection,bg='yellow',width=30,font = ('Arial', 13))
                 R.place(x=middle_start_x,y=middle_start_y)
                 middle_start_y=middle_start_y+30
-                #print("jjjj")
-                #middle_clean()     
-                
-                
-            
-        
+
     #0003a
     def right_show_wire(mode,titel,temp):  #p016 
         right_clean()
@@ -1848,9 +1878,7 @@ def show_allform_window():#日期,序號,廠商名,資料
 
     #0003 #p032b
     def right_show(date,serial,guest,temp,flag):#日期,序號,廠商名,資料:
-        #print(temp)
-        #print(flag)
-        
+
         a=1
         right_start=650
         if a==1:
@@ -1869,54 +1897,45 @@ def show_allform_window():#日期,序號,廠商名,資料
             def notdelete():   
                 left_show_a(0,"主畫面",tops)
                 
-            def onOK():
-                
-                print("")
+            
                 
             def onnext():##03-02-next
-                #keep_temp.append(1)
+                
                 test_show_1("next") #p032c
                 left_clean()
-                #print(one_form)
+                
                 for i in range(0,5):
                     del one_form[0]
-                #print("new",one_form)
+                
                 keyin_entry_form(2,"輸入產品名",10,0)
                 
             def onfix():##03-02 修改單筆
-                #keep_temp.append(2)
-                #print(total_form)#033a
+                
                 middle_show_b(4,"修改單筆",total_form,10)
                 
             def onsave():#p032d
-                #keep_temp.append(3)
+                
                 last_temp=[]
                 last_temp.append(head_temp[0])
                 last_temp.append(head_temp[2])
                 last_temp.append(total_form)
                 serial=head_temp[1]
                 
-                #print("HEAD temp=",head_temp)
-                #print("last serial==",serial)
-                #print("serial_net=",serial_net)
+                
                 newname=serial+head_temp[2]
-                #print("newname=",newname)
-                #head.append(second_temp)
+                
                 last_temp=json.dumps(last_temp)
-                #print("head==" ,head)
+            
                 update(path_form,serial,last_temp)#
                 update(path_form_name,newname,serial)
                 update(path_goods,'s',serial_net+1)
                 test_show_1("update")
                 right_clean()
-                
+                left_clean()
             def onfixsave(): # #p036
-                test_show_1("i am here")
+                
                 
                 middle_show_b(4,"修改產品成本",total_form,14) #修改單項成本
-                #keep_temp.append(4)
-                
-
             label_date=tk.Label(window, text = '日期  ',font = ('Arial', 14))
             label_date_in=tk.Label(window, text = date,font = ('Arial', 14))
             label_serial=tk.Label(window, text = '序號  ',font = ('Arial', 14))
@@ -1989,7 +2008,7 @@ def show_allform_window():#日期,序號,廠商名,資料
             y=y+25   
             label = tk.Label(window, text = total,font = ('Arial', 14))
             label.place(x=x,y=y)
-            #print("check",flag) #
+            
             if flag == 10 or flag ==11 or flag ==12:
                 blank = 30
                 idicent = 170
@@ -2012,15 +2031,12 @@ def show_allform_window():#日期,序號,廠商名,資料
                 button_next.place(x=850,y=650)
                 button_save = tk.Button(window, text = "不用刪除", command = notdelete,bg='yellow',font = ('Arial', 16))
                 button_save.place(x=1000,y=650)
-                #print("x width==",window.winfo_width())
-                #print("y height==",window.winfo_height())
+                
         else:
             right_clean()
     #0003b #p027 037 
     def right_show_b(temp,name,flag):#日期,序號,廠商名,資料:
-        #test_show_1(len(temp))
         
-        #print("flag=",flag)
         def show(start,end,x,y):#p028
             
             def next_page(): #03-01-06
@@ -2054,7 +2070,7 @@ def show_allform_window():#日期,序號,廠商名,資料
                     show(0,end_line,right_start+100,100)
                 if test_start > 22:
                     test_start=page_end[0]-1
-                    print("3")
+                    
                     show(test_start-22,test_start,right_start+100,100)
                 
                 
@@ -2137,72 +2153,38 @@ def show_allform_window():#日期,序號,廠商名,資料
     
     end=1
     if end == 1:
-        keep=[]
-        keep_temp=[]
-        """tops={1:"產品查詢 ", 2 :"電線查詢 ", 3:"表單查詢 ",4 :"貨品進出",  5 :"客戶/廠商 設定",88 :"結束程式"}
-        A1={1:"產品查詢 ", 2 :"修改產品資料 ", 3:"建立產品資料 ",4 :"刪除產品資料",  88 :"結束產品查詢",66 :""}
-        A11={79:"要存檔 ", 80 :"不要存檔 ",66 :"",67 :" ",68:" ",69 :" "}
-        A12={79:"確定刪除 ", 80 :"不要刪除 ",66 :"",67 :" ",68:" ",69 :" "}
-        B1={1:"查詢電線價錢與列印 ", 2 :"電線設定檔 ", 3:"更改電線成本 ",  88:"結束電線查詢",66 :"",67 :" "}
-        B11={79:"建立電線設定檔",80 :"刪除電線設定檔 ",66 :"",67 :" ",68:" ",69 :" "}
-        C1={1:"僅供表單查詢 ", 2 :"增加 /刪除表單", 88:"結束表單查詢",66 :"",67 :" ",68:" "}
-        C11={1:"增加新表單", 2 :"修改/ 刪除單日表單 ",66 :"",67 :" ",68:" ",69 :" "}
-        C12={1:"修改表單", 2 :"刪除單日表單 ",66 :"結束表單查詢",67 :" ",68:" ",69 :" "}
-        D1={1:"全品項查詢", 2 :"單一品項查詢 ",  88:"結束貨品進出",66 :"",67 :" ",68:" "}
-        E1={1:"編輯 廠商/客戶 資料  ", 2 :"增加 廠商/客戶 資料", 3:"刪除 廠商/客戶 資料 ",88:"結束貨品進出",66 :"",67 :" "}    
-        list1 = ["名稱","成本","大賣","小賣","編號","單位","數量","簡稱"]
-        wire=[["2平方二芯電纜線",1089,1],
-            ['2平方三芯電纜線',1425,1],
-            ['3.5平方二芯電纜線',1520,1],
-            ['3.5平方三芯電纜線',2079,2],
-            ['5.5平方二芯電纜線',2235,2],
-            ['5.5平方三芯電纜線',3076,2],
-            ['8平方二芯電纜線',3106,2],
-            ['8平方三芯電纜線',4313,2],
-            ['14平方三芯電纜線',7436,3],
-            ['1.6二芯白扁線',700,3],
-            ['2.0二芯白扁線',1000,3],
-            ['1.6單芯電線',232,4],
-            ['2.0單芯電線',350,4],
-            ['3.5平方電線',459,4],
-            ['5.5平方電線',708,4],
-            ['8平方電線',1009,4]]
-        date="20221216"
-        serial="123456789"
-        guest="123456789"
-        temp=[["電磁開關MSO-P40(15HP)",1,"個",100,1000],["789456987555",20,"個",15,300]]"""
         
-
-        #testtest
-        
-        keep_temp=[]
         date_temp=[]
         path_goods='tbuiness/'#產品與電線目錄
         date_temp=(readdate(path_goods))#產品與電線用
-        #print("read read")
         business_b= int(date_temp.get('b'))#客戶數量
         factory_f= int(date_temp.get('f'))#廠商數量
         goods_a= int(date_temp.get('a'))#產品數量
         wire_a= json.loads(date_temp.get('wire'))#產品數量_
         
+        business_list_all={}#廠商的所有資料
         business_list=[]
         for i in range(1001,int(factory_f)+1):
-            #print(json.loads(date_temp.get(str(i)))[1])
+            
             business_list.append(json.loads(date_temp.get(str(i)))[1])
+            business_list_all[i]=json.loads(date_temp.get(str(i)))
         for i in range(1101,int(business_b)+1):
-            #print(json.loads(date_temp.get(str(i)))[1])
+            
             business_list.append(json.loads(date_temp.get(str(i)))[1])
+            business_list_all[i]=json.loads(date_temp.get(str(i)))        
             #########放在business_list
-        #print(business_list)
+            
+
         dict_business_list={}
         for i in range(len(business_list)):
             dict_business_list[i]=business_list[i]
-        #print(goods_a)
+
         
         customer=[]#拿到所有 客戶名子
         for i in range(1101,int(business_b)+1):
-            #print(json.loads(date_temp.get(str(i)))[1])
+        
             customer.append(json.loads(date_temp.get(str(i)))[1])
+
         
         left_show_a(0,"主畫面",tops)# 開始畫面
     
@@ -2211,7 +2193,7 @@ def show_allform_window():#日期,序號,廠商名,資料
 
 def readdate(dateset):#讀取(位置+標籤)####
     ref=db.reference(dateset)
-    #print(ref.get())                 
+            
     return(ref.get())
 
 def update(dateset,datenames,date):##建立 位置/標籤/資料/
@@ -2245,7 +2227,7 @@ C1={1:"僅供表單查詢(輸出excel) ", 2 :"增加 表單", 3:"修改 表單",
 C11={1:"增加新表單", 2 :"修改/ 刪除單日表單 ",3 :"刪除單日表單",67 :" ",68:" ",69 :" "}
 C12={1:"修改表單", 2 :"刪除單日表單 ",66 :"結束表單查詢",67 :" ",68:" ",69 :" "}
 D1={1:"全品項查詢", 2 :"單一品項查詢 ",  88:"結束貨品進出",66 :"",67 :" ",68:" "}
-E1={1:"編輯 廠商/客戶 資料  ", 2 :"增加 廠商/客戶 資料", 3:"刪除 廠商/客戶 資料 ",88:"結束貨品進出",66 :"",67 :" "}    
+E1={1:"編輯 廠商/客戶 資料  ", 2 :"增加 廠商 資料",  3 :"增加 客戶 資料",4:"刪除 廠商/客戶 資料 ",88:"結束貨品進出",67 :" "}    
 list1 = ["名稱","成本","大賣","小賣","編號","單位","數量","簡稱"]
 wire=[["2平方二芯電纜線",1089,1],
         ['2平方三芯電纜線',1425,1],
@@ -2293,15 +2275,20 @@ if serial_net==99:
     serial_net=11
     update(path_goods,'s',serial_net)
             ####拿到所有廠商客戶名子
+business_list_all={}#廠商的所有資料
 business_list=[]
 for i in range(1001,int(factory_f)+1):
-            #print(json.loads(date_temp.get(str(i)))[1])
+            
     business_list.append(json.loads(date_temp.get(str(i)))[1])
+    business_list_all[i]=json.loads(date_temp.get(str(i)))
 for i in range(1101,int(business_b)+1):
-            #print(json.loads(date_temp.get(str(i)))[1])
+           
     business_list.append(json.loads(date_temp.get(str(i)))[1])
+    business_list_all[i]=json.loads(date_temp.get(str(i)))        
             #########放在business_list
-        #print(business_list)
+    
+
+
 dict_business_list={}
 for i in range(len(business_list)):
     dict_business_list[i]=business_list[i]
@@ -2309,7 +2296,7 @@ for i in range(len(business_list)):
         
 customer=[]#拿到所有 客戶名子
 for i in range(1101,int(business_b)+1):
-            #print(json.loads(date_temp.get(str(i)))[1])
+        
     customer.append(json.loads(date_temp.get(str(i)))[1])
 
 def date_get(name):
@@ -2326,7 +2313,7 @@ def date_change(name,value):
     date_temp[str(name)]=value
 
 show_allform_window()
-#print("222=",test_temp[0])
+
 if len(test_temp) != 0:
     while test_temp[0]==66:
         test_temp=[]

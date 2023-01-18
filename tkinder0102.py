@@ -282,7 +282,7 @@ def show_allform_window():#日期,序號,廠商名,資料
                 break
         return flag
 
-    def left_calean():#清除左邊顯示
+    def left_clean():#清除左邊顯示
         Canvas=tk.Canvas
         cv = Canvas(window,width=300, height=400)#,bg = 'white'
             #           创建一个矩形，坐标为(10,10,110,110)
@@ -369,7 +369,7 @@ def show_allform_window():#日期,序號,廠商名,資料
         if flag==11:#03-02 #p033d
             #print(list_inquire[0],flag) #
             keyin_entry_form_fix(3,"輸入數量(修改)",11,list_inquire[0]) 
-        #left_calean()
+        #left_clean()
     #0016  
     def find_goods_lableonly_b(keyin):#編號 找到 產品標籤
         
@@ -470,7 +470,7 @@ def show_allform_window():#日期,序號,廠商名,資料
 
             total_form.append(test)
             
-            left_calean()
+            left_clean()
             right_clean()
             print(head_temp)
             right_show(head_temp[0],head_temp[1],head_temp[2],total_form,flag)
@@ -479,7 +479,7 @@ def show_allform_window():#日期,序號,廠商名,資料
             for i in range(0,5):
                     del one_form[0]
                 #print("new",one_form)
-            left_calean()
+            left_clean()
             keyin_entry_form(2,"輸入產品名",10,0)
             
             
@@ -487,7 +487,7 @@ def show_allform_window():#日期,序號,廠商名,資料
         
 
 
-        #left_calean()
+        #left_clean()
         title = tk.Label(window, text=title ,fg="#8B008B", bg="#7AFEC6", width=20,font = ('Arial', 16))
         title.place(x=0,y=250)
         if mode!=5:   
@@ -611,7 +611,7 @@ def show_allform_window():#日期,序號,廠商名,資料
             total_form[form_choose[0]]=test
             #total_form.append(test)
             
-            left_calean()
+            left_clean()
             right_clean()
             right_show(head_temp[0],head_temp[1],head_temp[2],total_form,10)
             
@@ -623,7 +623,7 @@ def show_allform_window():#日期,序號,廠商名,資料
         
 
 
-        #left_calean()
+        #left_clean()
         title = tk.Label(window, text=title ,fg="#8B008B", bg="#7AFEC6", width=20,font = ('Arial', 16))
         title.place(x=0,y=250)
         if mode!=5:   
@@ -715,7 +715,7 @@ def show_allform_window():#日期,序號,廠商名,資料
                             
                         form_search.append(entry1.get())
                         
-                        left_calean()
+                        left_clean()
                         
                         if len(form_search) == 1:
                             keyin_entry(1,"結束時間",9) #03-01-02
@@ -725,7 +725,7 @@ def show_allform_window():#日期,序號,廠商名,資料
                 elif flag==12 or flag==13 :#034a 035a
                     if isValidDate(entry1.get()) != False:
                         form_search.append(entry1.get())
-                    left_calean()
+                    left_clean()
                         
                     if len(form_search) == 1:
                         keyin_entry(1,"(結束時間)",flag)#
@@ -734,7 +734,7 @@ def show_allform_window():#日期,序號,廠商名,資料
                         #03-03-03 #03-04-03
                         form_search_only(form_search,flag)
                         
-        left_calean()
+        left_clean()
         
 
         if mode==1:#只顯示不修改
@@ -747,7 +747,7 @@ def show_allform_window():#日期,序號,廠商名,資料
             button.place(x=60,y=310)
 
         else:
-            #left_calean()
+            #left_clean()
             print("enf")
 
     ####0001a
@@ -759,7 +759,7 @@ def show_allform_window():#日期,序號,廠商名,資料
         title=title
         temp=temp
         #main_read()
-        #left_calean()
+        #left_clean()
         middle_clean()
         right_clean()
         
@@ -796,7 +796,7 @@ def show_allform_window():#日期,序號,廠商名,資料
         if mode==1:
             def Selection ():
                 middle_clean()
-                left_calean()
+                left_clean()
                 
                 test_show_1(var.get())  #change
                 if var.get()==1:
@@ -831,7 +831,7 @@ def show_allform_window():#日期,序號,廠商名,資料
             test_show_1("2 開始")
             def Selection ():
                 middle_clean()
-                left_calean()
+                left_clean()
                 
                 test_show_1(var.get())  #change
                 if var.get()==1:
@@ -874,7 +874,7 @@ def show_allform_window():#日期,序號,廠商名,資料
             
             def Selection ():
                 middle_clean()
-                left_calean()
+                left_clean()
                 
                 #test_show_1(var.get())  #change
                 if var.get()==1:#p023
@@ -973,7 +973,7 @@ def show_allform_window():#日期,序號,廠商名,資料
             updata_date_temp(str(lable),temp)#只有可以變更  #useuse
             test_show_1("fix  ok")
             #print("psaa")#999
-            left_calean()
+            left_clean()
             middle_clean()
     
     
@@ -997,7 +997,7 @@ def show_allform_window():#日期,序號,廠商名,資料
             updata_date_temp(str(lable),temp)#只有可以變更  #useuse
             test_show_1("fix  ok")
             
-            left_calean()
+            left_clean()
             middle_clean()
             right_clean()
             left_show_a(0,"主畫面",tops)# 開始畫面
@@ -1078,7 +1078,7 @@ def show_allform_window():#日期,序號,廠商名,資料
         
         def notsure():
             left_show_a(0,"主畫面",tops)
-            left_calean()
+            left_clean()
             middle_clean()
             
             test_show_1("not delete goods")#01-04-04
@@ -1096,14 +1096,14 @@ def show_allform_window():#日期,序號,廠商名,資料
     #0017 #p017
     def keyin_entry2(mode,title,temp):#   刪除或新增
         
-        left_calean()
+        left_clean()
         def delete():#02-02-07
                 
                 
             wire_a= json.loads(date_temp.get('wire'))#產品數量_       
             #middle_show(1,"修改畫面",temp,2)
             #middle_show_b(1,"修改畫面",temp,2)
-            left_calean()
+            left_clean()
             if mode==1:#02-02-07
                 middle_show_b(4,"現有設定檔",temp,6) 
             elif mode==2:#p019 02-02-09 刪除設定檔 
@@ -1130,7 +1130,7 @@ def show_allform_window():#日期,序號,廠商名,資料
         def save():
             
             if mode==2:
-                left_calean()
+                left_clean()
                 left_show_a(0,"主畫面",tops)#
             elif mode==1:
                 #test_show_1("here") #p020
@@ -1139,7 +1139,7 @@ def show_allform_window():#日期,序號,廠商名,資料
                 
             
 
-            #left_calean()
+            #left_clean()
         if mode==1:#02-02-02 一開始用
             title = tk.Label(window, text=title ,fg="#8B008B", bg="#7AFEC6", width=20,font = ('Arial', 16))
             title.place(x=0,y=250)
@@ -1215,7 +1215,7 @@ def show_allform_window():#日期,序號,廠商名,資料
 
         def keyin_entry1(title,choose,temp):# 模式   標頭名稱 #p007
             #01-02-06
-            left_calean()
+            left_clean()
             def fix():
                 #print("01-02 test",flag)
                 #test_show_2(entry1.get())
@@ -1224,7 +1224,7 @@ def show_allform_window():#日期,序號,廠商名,資料
                         temp[choose]=entry1.get()
                         middle_show_b(3,"電線設定檔",temp,flag) 
                     
-                        left_calean()
+                        left_clean()
                 
                 if flag !=3 and flag !=7:
                     if entry1.get()!= "" and entry1.get().isdigit()==True:
@@ -1233,7 +1233,7 @@ def show_allform_window():#日期,序號,廠商名,資料
                         middle_show_b(2,"修改畫面",temp,flag) 
                         #01-02-07
                         
-                        left_calean()
+                        left_clean()
                         
                 if flag==3:
                     #print("flag==3")
@@ -1256,7 +1256,7 @@ def show_allform_window():#日期,序號,廠商名,資料
                         if entry1.get()!= "":
                             temp[choose]=entry1.get()
                             middle_show_b(3,"修改畫面",temp,flag)
-                    left_calean()
+                    left_clean()
                     #test_show_1(choose)
             
             def save():
@@ -1271,7 +1271,7 @@ def show_allform_window():#日期,序號,廠商名,資料
                 else:#flag==3 flag==5
                     data_save_or_delete(2,temp)#01-03-04 #p012 
                     #02-02-05
-            #left_calean()
+            #left_clean()
             title = tk.Label(window, text=title ,fg="#8B008B", bg="#7AFEC6", width=20,font = ('Arial', 16))
             title.place(x=0,y=250)
             entry1 = tk.Entry(window, width = 20, text='y',bd=5,font = ('Arial', 16))    # 輸入欄位所在視窗  # 輸入欄位的寬度                    
@@ -1298,7 +1298,7 @@ def show_allform_window():#日期,序號,廠商名,資料
             
                 if flag==1 or flag==2 :
                     number=(temp.get(var.get()))
-                    left_calean()
+                    left_clean()
                     find_goods_lable(number[1],flag)#01-01-03b
                     #01-02-03b
                 #if flag != 9 and flag != 10:
@@ -1590,7 +1590,7 @@ def show_allform_window():#日期,序號,廠商名,資料
             def onnext():##03-02-next
                 #keep_temp.append(1)
                 test_show_1("next") #p032c
-                left_calean()
+                left_clean()
                 #print(one_form)
                 for i in range(0,5):
                     del one_form[0]
